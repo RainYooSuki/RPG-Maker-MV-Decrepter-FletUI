@@ -1,0 +1,68 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rpgmv-decrypter"
+version = "1.0.0"
+description = "Decrypt, re-encrypt and restore RPG Maker MV/MZ resource files (.rpgmvp, .rpgmvo, .rpgmvm, .png_, .ogg_, .m4a_)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+keywords = [
+    "rpgmvp", "rpgmvm", "rpgmvo", "png_", "ogg_", "m4a_",
+    "rpg-maker", "rpg-maker-mv", "rpg-maker-mz", "decrypt", "encrypt", "restore",
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Environment :: Win32 (MS Windows)",
+    "Intended Audience :: End Users/Desktop",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Games/Entertainment",
+    "Topic :: Utilities",
+]
+dependencies = []
+
+[project.optional-dependencies]
+# The desktop shell is optional: the library and CLI use only the standard library.
+gui = ["flet[desktop]>=1.0,<2"]
+test = ["pytest>=7.0", "ruff>=0.9", "pyyaml>=6.0"]
+build = ["pyinstaller>=6.11"]
+
+[project.scripts]
+rpgmv-decrypter = "rpgmv_decrypter.cli:main"
+
+[project.gui-scripts]
+rpgmv-decrypter-gui = "flet_app.main:run"
+
+[project.urls]
+"Reference implementation" = "https://github.com/Petschko/RPG-Maker-MV-Decrypter"
+
+[tool.setuptools]
+packages = ["rpgmv_decrypter", "flet_app"]
+
+[tool.setuptools.package-data]
+rpgmv_decrypter = ["py.typed", "assets/*.svg", "assets/*.png", "assets/*.ico"]
+flet_app = ["assets/*.svg", "assets/*.png", "assets/*.ico"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+ignore = [
+    "BLE001",  # broad exception guards at UI/worker boundaries are intentional
+    "E501",    # localized UI strings are clearer on one line
+    "SIM105",  # contextlib.suppress would hide best-effort cleanup intent here
+]

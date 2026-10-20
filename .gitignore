@@ -1,0 +1,26 @@
+# Python caches and packaging metadata
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local virtual environment and development runtime
+.venv/
+venv/
+.home/
+.tmp/
+.pip-cache/
+.flet/
+
+# Flet / PyInstaller build outputs
+build/
+dist/
+dist-flet/
+*.spec
+
+# Generated exports and logs
+output/
+*.log
