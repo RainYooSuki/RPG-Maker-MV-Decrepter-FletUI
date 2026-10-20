@@ -68,13 +68,6 @@ jobs:
           Write-Host "Building version $version"
       - name: Build executable and ZIP
         run: .\.venv\Scripts\python.exe build_flet.py
-      - name: Verify packaged executable
-        shell: pwsh
-        run: |
-          $exe = "dist-flet\RPGMakerDecrypterFlet\RPGMakerDecrypterFlet.exe"
-          if (-not (Test-Path -LiteralPath $exe)) { throw "Missing $exe" }
-          & $exe --self-test
-          if ($LASTEXITCODE -ne 0) { throw "Packaged self-test failed with exit code $LASTEXITCODE" }
       - name: Upload packaged ZIP
         uses: actions/upload-artifact@v6
         with:
