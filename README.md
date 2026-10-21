@@ -13,16 +13,6 @@
 - 图片：无密钥也能还原标准 PNG 头
 - 不依赖网络服务，不上传用户文件
 
-## 界面预览
-
-![主界面](docs/flet-preview-main.png)
-
-![处理报告](docs/flet-preview-report.png)
-
-![高级设置](docs/flet-preview-advanced.png)
-
-![最大化状态](docs/flet-preview-maximized.png)
-
 ## 支持格式
 
 | 加密格式（MV） | 加密格式（MZ） | 明文格式 | 类型 |
